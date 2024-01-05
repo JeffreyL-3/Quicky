@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quicky</title>
+    <link href="https://fonts.cdnfonts.com/css/aquire" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/motiva-sans" rel="stylesheet">
+    <style>
+        #userAnswer {
+            width: 15%; /* Adjusts the width of the input field */
+            background-color: transparent;
+            border: none;
+            color: #7eccaa;
+            font-size: 10vh;
+            font-weight: bold;
+            text-align: center;
+            outline: none;
+            -moz-appearance: textfield;
+            appearance: textfield;
+            caret-color: #7eccaa;
+            margin-left: 0;
+            padding: 0;
+        }
+
+        #userAnswer::-webkit-inner-spin-button,
+        #userAnswer::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        #problem {
+            color: white;
+            font-size: 10vh;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .num1-color {
+            color: #7eb5cc;
+        }
+
+        #problemContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            background-color: #262626;
+            border-radius: 20px;
+            padding: 10px;
+            width: 90%;
+            position: fixed;
+            top: 40%;
+        }
+        
+        #problem {
+            margin-right: 20px; /* You can reduce this value to bring them closer */
+            /* If the #problem div has padding, you can reduce it as well */
+            padding-right: 0; /* Adjust as needed */
+        }
+        
+        
+    
+        body {
+            background-color: rgb(66, 137, 160);
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            height: 100vh;
+            font-family: 'motiva-sans', sans-serif;
+            position: relative;
+        }
+
+        #counter {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            color: rgb(230, 255, 139);
+            z-index: 1000;
+            font-size: 4vh;
+        }
+
+        h1 {
+            margin: 0;
+            margin-bottom: 10px;
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translate(-50%, 0); /* Correct translation */
+            font-family: 'Aquire', sans-serif;
+            font-size: 12vh; /* Adjust the font size to fit on different screens */
+            color: white;
+        }
+        
+        html, body {
+            font-weight: bold;
+            overflow: hidden; /* Prevents scrolling */
+            height: 100%; /* Sets a fixed height */
+        }
+
+        #timer {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            color: rgb(230, 255, 139);
+            z-index: 1000;
+            font-size: 4vh;
+        }
+
+        #resultsPopup {
+            background-color: #262626;
+            padding: 10px;
+            border-radius: 20px;
+            box-sizing: border-box; /* This line ensures padding is included in width */
+            width: 120vh; /* This line ensures the popup takes the full viewport width */
+            position: fixed; /* This line, combined with the following two, ensures */
+            left: -10; /* the popup is not constrained by parent element's width and */
+            right: 10; /* positions it relative to the viewport */
+            top: 40%; /* Start at 50% from the top */
+        }
+
+        .popup-content {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white; /* Set the text color to white */
+            display: flex;
+            font-size: 10vh;
+            flex-direction: column;
+            font-family: 'motiva-sans', sans-serif;
+            font-weight: bold;
+        }
+
+        .score-text{
+            color: #7eb5cc;
+        }
+
+        #score .score-number{
+            color: #7eccaa;
+        }
+        
+        /* Add keyframes for the popup scaling animation */
+        @keyframes scalePopup {
+            0% {
+                transform: scale(0.1);
+                opacity: 0;
+            }
+            80% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInText {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        #resultsPopup.popup {
+            animation: scalePopup 1s ease forwards;
+        }
+        
+
+        button {
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 30px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer; /* Add cursor style */
+            display: inline-block;
+            font-family: 'motiva-sans', sans-serif;
+            font-weight: bold;
+            font-size: 3vh;
+        }
+
+        button:hover {
+            background-color: #444; /* Slightly darker background on hover */
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.1); /* More subtle glow */
+            transition: background-color 0.1s, box-shadow 0.1s; /* Smooth transition for the hover effect */
+        }       
+
+    </style>
+</head>
+<body>
+    <canvas id="my-canvas"></canvas>
+    <canvas id="my-canvas"></canvas>
+    <h1>Quicky</h1>
+    <div id="counter">Problems Solved: 0</div>
+    <div id="problemContainer">
+        <div id="problem"></div>
+        <input type="number" id="userAnswer"/>
+    </div>
+    <div id="timer">60</div>
+    <!-- Results Popup -->
+    <div id="resultsPopup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <!-- Game results here -->
+            <div id="score"><span class="score-text">Score:</span> <span class="score-number">0</span></div>
+
+            <!-- Play Again button placed below the score -->
+            <button id="playAgainButton" class="play-again-btn" onclick="playAgain()">Play Again</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
+
+    <script>
+        var confettiSettings = { target: 'my-canvas', start_from_edge: 'true', max: '100', clock: '33' };
+        var confetti = new ConfettiGenerator(confettiSettings);
+
+        let lastAnswer = 0; // Variable to store the last answer
+        let problemsSolved = 0; // Variable to keep track of the number of problems solved
+
+        function generateProblem() {
+            let num1 = lastAnswer; // Start with the last answer
+            let num2 = Math.floor(Math.random() * 100);
+            let operation;
+
+            let rampDown = 0.5;
+            const absSize = Math.abs(lastAnswer);
+            if(absSize >= 100){
+                rampDown = 0.5 - (absSize/400)
+
+                if(num2 < 50){
+                    num2 += absSize/10
+                }
+            }
+            Math.round(num2);
+        
+            // Adjust the probability of choosing addition or subtraction based on lastAnswer
+            if (lastAnswer < -100) {
+                // Increase probability of addition
+                operation = Math.random() > rampDown ? '+' : '-'; // (1.0 - rampDown) chance of addition
+            } else if (lastAnswer > 100) {
+                // Increase probability of subtraction
+                operation = Math.random() > rampDown ? '-' : '+'; // (1.0 - rampDown) chance of subtraction
+            } else {
+                // If lastAnswer is between -100 and 100, choose randomly
+                operation = Math.random() > 0.5 ? '+' : '-';
+            }
+        
+            let answer;
+        
+            if (operation === '+') {
+                answer = num1 + num2;
+            } else {
+                answer = num1 - num2;
+            }
+
+            return { question: `${num1} ${operation} ${num2}`, answer: answer };
+        }
+        
+        
+        function checkAnswer() {
+            const userAnswer = parseInt(document.getElementById('userAnswer').value);
+            const problem = document.currentProblem;
+        
+            if (userAnswer === problem.answer) {
+                lastAnswer = problem.answer; // Update the last answer
+                problemsSolved++; // Increment the problems solved counter
+                updateCounter(); // Update the display of the counter
+                setTimeout(loadNewProblem, 150); // Delay
+            }
+        }
+        
+        
+        function updateCounter() {
+            document.getElementById('counter').textContent = `${problemsSolved}`;
+        }
+        
+        function loadNewProblem() {
+            const problem = generateProblem();
+            document.currentProblem = problem;
+            document.getElementById('problem').innerHTML = `<span class="num1-color">${problem.question.split(' ')[0]}</span> ${problem.question.substring(problem.question.indexOf(' '))} =`;
+            document.getElementById('userAnswer').value = '';
+            updateCounter(); // Ensure the counter is updated when the new problem is loaded
+        }
+        
+        // Set up the event listener for the input field
+        window.onload = function() {
+            loadNewProblem();
+            document.getElementById('userAnswer').focus(); // Focus the invisible input box for user input
+            document.getElementById('userAnswer').addEventListener('input', checkAnswer);
+            startTimer(); // Start the timer when the window loads
+        };             
+        
+        let timeLeft = 6000; // 1 minute = 60,000 hundredths of a second
+        let timerId = null;
+        
+        function startTimer() {
+            timerId = setInterval(() => {
+            timeLeft--;
+            // Format the time left into seconds and hundredths
+            let seconds = Math.floor(timeLeft / 100);
+            let hundredths = timeLeft % 100;
+            // Ensure two digits for hundredths
+            hundredths = hundredths < 10 ? '0' + hundredths : hundredths;
+            document.getElementById('timer').textContent = seconds + '.' + hundredths;
+        
+            if (timeLeft <= 0) {
+              clearInterval(timerId);
+              showResultsPopup();
+            }
+          }, 10); // Update the timer every 10 milliseconds
+        }
+
+        function resetAll() {
+            problemsSolved = 0;
+            lastAnswer=0;
+            timeLeft = 6000;
+            loadNewProblem();
+        }
+
+        function updateScore() {
+            var scoreElement = document.getElementById("score");
+            scoreElement.innerHTML = "Score: " + problemsSolved;
+        }
+
+        function showResultsPopup() {
+            document.getElementById('resultsPopup').style.display = 'block';
+            document.getElementById('problemContainer').style.display = 'none'; // Hide the problem container
+            document.getElementById('counter').style.display = 'none';
+            document.getElementById('timer').style.display = 'none';
+            updateScore();
+            startConfetti();
+        }
+          
+        function playAgain() {
+            document.getElementById('resultsPopup').style.display = 'none';
+            document.getElementById('problemContainer').style.display = 'flex'; // Show the problem container again
+            document.getElementById('counter').style.display = 'flex';
+            document.getElementById('timer').style.display = 'flex';
+            resetAll();
+            startTimer();
+            document.getElementById('userAnswer').focus(); // Set focus to the input box
+            stopConfetti();
+        }
+        
+        function startConfetti(){
+            confetti = new ConfettiGenerator(confettiSettings);
+            confetti.render();
+        }
+
+        function stopConfetti(){
+            confetti.clear();
+        }
+
+    </script>
+</body>
+</html>
