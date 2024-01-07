@@ -289,7 +289,7 @@
             startTimer(); // Start the timer when the window loads
         };             
         
-        let timeLeft = 6000; // 1 minute = 60,000 hundredths of a second
+        let timeLeft = 60000; // 1 minute = 60,000 hundredths of a second
         
         let timerWorker;
 
@@ -300,9 +300,15 @@
         
             timerWorker.onmessage = function(e) {
               let timeLeft = e.data;
-              let seconds = Math.floor(timeLeft / 100);
-              let hundredths = timeLeft % 100;
+        
+              // Convert milliseconds to seconds (1 second = 1000 milliseconds)
+              let seconds = Math.floor(timeLeft / 1000);
+        
+              // Calculate hundredths of a second
+              // (e.g., 1250 milliseconds is 1 second and 250 milliseconds or 25 hundredths)
+              let hundredths = Math.floor((timeLeft % 1000) / 10);
               hundredths = hundredths < 10 ? '0' + hundredths : hundredths;
+        
               document.getElementById('timer').textContent = seconds + '.' + hundredths;
         
               if (timeLeft <= 0) {
@@ -312,6 +318,7 @@
             };
           }
         }
+        
         
 
         function resetAll() {

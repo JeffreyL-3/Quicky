@@ -1,4 +1,4 @@
-let timeLeft = 6000; // example time in milliseconds
+let timeLeft = 60000; // example time in milliseconds
 
 function startTimer() {
   setInterval(() => {
