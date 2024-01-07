@@ -292,22 +292,28 @@
         let timeLeft = 6000; // 1 minute = 60,000 hundredths of a second
         let timerId = null;
         
+        let timerWorker;
+
         function startTimer() {
-            timerId = setInterval(() => {
-            timeLeft--;
-            // Format the time left into seconds and hundredths
-            let seconds = Math.floor(timeLeft / 100);
-            let hundredths = timeLeft % 100;
-            // Ensure two digits for hundredths
-            hundredths = hundredths < 10 ? '0' + hundredths : hundredths;
-            document.getElementById('timer').textContent = seconds + '.' + hundredths;
+          if (window.Worker) {
+            timerWorker = new Worker('timerWorker.js');
+            timerWorker.postMessage('start'); // Start the timer in the worker
         
-            if (timeLeft <= 0) {
-              clearInterval(timerId);
-              showResultsPopup();
-            }
-          }, 10); // Update the timer every 10 milliseconds
+            timerWorker.onmessage = function(e) {
+              let timeLeft = e.data;
+              let seconds = Math.floor(timeLeft / 100);
+              let hundredths = timeLeft % 100;
+              hundredths = hundredths < 10 ? '0' + hundredths : hundredths;
+              document.getElementById('timer').textContent = seconds + '.' + hundredths;
+        
+              if (timeLeft <= 0) {
+                timerWorker.terminate(); // Stop the worker when the timer ends
+                showResultsPopup();
+              }
+            };
+          }
         }
+        
 
         function resetAll() {
             problemsSolved = 0;
