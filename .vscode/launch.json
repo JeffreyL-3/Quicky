@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: HTTP Server",
+            "type": "python",
+            "request": "launch",
+            "module": "http.server",
+            "args": ["8000"],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Open Chrome",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:8000",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "start-python-server"
+        }
+    ]
+}

@@ -182,7 +182,35 @@
             background-color: #444; /* Slightly darker background on hover */
             box-shadow: 0 0 5px rgba(255, 255, 255, 0.1); /* More subtle glow */
             transition: background-color 0.1s, box-shadow 0.1s; /* Smooth transition for the hover effect */
-        }       
+        }
+
+        #keyboard {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 200px; /* Adjust this value as needed to create space between the problem container and the keyboard */
+            width: 100%; /* This will make it responsive */
+            justify-content: center; /* This will center the keys */
+            padding: 0 20px; /* This gives some space on the sides */
+        }
+        
+        
+        .key {
+            background-color: #FFF; /* White key background */
+            color: #333; /* Dark text */
+            padding: 15px;
+            text-align: center;
+            font-size: 2em;
+            border-radius: 5px;
+            user-select: none; /* Prevents text selection */
+            -webkit-tap-highlight-color: transparent; /* Removes mobile highlight */
+            cursor: pointer; /* Pointer to indicate clickable */
+            box-shadow: 1px 1px 5px rgba(0,0,0,0.2); /* Soft shadow for depth */
+        }
+        
+        .key:active {
+            background-color: #eaeaea; /* Feedback when key is pressed */
+        }
 
     </style>
 </head>
@@ -195,6 +223,28 @@
         <div id="problem"></div>
         <input type="number" id="userAnswer"/>
     </div>
+
+    <!-- Keyboard container -->
+    <div id="keyboard">
+        <!-- Row 1 -->
+        <div class="key" onclick="enterNumber('1')">1</div>
+        <div class="key" onclick="enterNumber('2')">2</div>
+        <div class="key" onclick="enterNumber('3')">3</div>
+        <!-- Row 2 -->
+        <div class="key" onclick="enterNumber('4')">4</div>
+        <div class="key" onclick="enterNumber('5')">5</div>
+        <div class="key" onclick="enterNumber('6')">6</div>
+        <!-- Row 3 -->
+        <div class="key" onclick="enterNumber('7')">7</div>
+        <div class="key" onclick="enterNumber('8')">8</div>
+        <div class="key" onclick="enterNumber('9')">9</div>
+        <!-- Row 4 -->
+        <div class="key" onclick="clearAnswer()">CLEAR</div>
+        <div class="key" onclick="enterNumber('0')">0</div>
+        <div class="key" onclick="backspace()">BACKSPACE</div>
+    </div>
+
+
     <div id="timer">60</div>
     <!-- Results Popup -->
     <div id="resultsPopup" class="popup" style="display: none;">
@@ -281,8 +331,9 @@
             updateCounter(); // Ensure the counter is updated when the new problem is loaded
         }
         
-        // Set up the event listener for the input field
+        // Set up the event listener for the input field 
         window.onload = function() {
+            keyboardShowCheck();
             loadNewProblem();
             document.getElementById('userAnswer').focus(); // Focus the invisible input box for user input
             document.getElementById('userAnswer').addEventListener('input', checkAnswer);
@@ -319,7 +370,6 @@
           }
         }
         
-        
 
         function resetAll() {
             problemsSolved = 0;
@@ -336,6 +386,7 @@
         function showResultsPopup() {
             document.getElementById('resultsPopup').style.display = 'block';
             document.getElementById('problemContainer').style.display = 'none'; // Hide the problem container
+            document.getElementById('keyboard').style.display = 'none';
             document.getElementById('counter').style.display = 'none';
             document.getElementById('timer').style.display = 'none';
             updateScore();
@@ -347,6 +398,7 @@
             document.getElementById('problemContainer').style.display = 'flex'; // Show the problem container again
             document.getElementById('counter').style.display = 'flex';
             document.getElementById('timer').style.display = 'flex';
+            keyboardShowCheck();
             resetAll();
             startTimer();
             document.getElementById('userAnswer').focus(); // Set focus to the input box
@@ -362,6 +414,31 @@
             confetti.clear();
         }
 
+        function enterNumber(number) {
+            var userAnswer = document.getElementById('userAnswer');
+            userAnswer.value += number; // Append number to the input field
+            checkAnswer(); // Call your checkAnswer function
+        }
+        
+        function backspace() {
+            var userAnswer = document.getElementById('userAnswer');
+            userAnswer.value = userAnswer.value.slice(0, -1); // Remove last character
+        }
+        
+        function clearAnswer() {
+            document.getElementById('userAnswer').value = ''; // Clear the input field
+        }
+
+        function keyboardShowCheck() {
+            var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (!isMobile) {
+                document.getElementById('keyboard').style.display = 'none';
+            }
+            else{
+                document.getElementById('keyboard').style.display = 'flex';
+            }
+        }       
+        
     </script>
 </body>
 </html>
