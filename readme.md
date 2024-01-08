@@ -1,5 +1,5 @@
 # Quicky
-Get ready for some quick math! Quicky is a free and simple webapp to add
+Get ready for some quick math! Quicky is a free and simple webapp some fast math.
 
 ## Setup
 - Access the webapp here: https://jeffreyl-3.github.io/Quicky/
