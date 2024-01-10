@@ -224,7 +224,7 @@
     <div id="counter">Solved: 0</div>
     <div id="problemContainer">
         <div id="problem"></div>
-        <input type="number" id="userAnswer"/>
+        <input type="text" id="userAnswer"/>
     </div>
 
     <!-- Keyboard container -->
@@ -242,7 +242,7 @@
         <div class="key" data-number="8" ontouchstart="enterNumber('8')">8</div>
         <div class="key" data-number="9" ontouchstart="enterNumber('9')">9</div>
         <!-- Row 4 -->
-        <div class="key" data-action="clear" ontouchstart="clearAnswer()">CLEAR</div>
+        <div class="key" data-action="negative" ontouchstart="negative()">NEG</div>
         <div class="key" data-number="0" ontouchstart="enterNumber('0')">0</div>
         <div class="key" data-action="backspace" ontouchstart="backspace()">BACKSPACE</div>
     </div>
@@ -428,10 +428,24 @@
             var userAnswer = document.getElementById('userAnswer');
             userAnswer.value = userAnswer.value.slice(0, -1); // Remove last character
         }
+
+        function negative() {
+            var userAnswerElement = document.getElementById('userAnswer');
+            var userAnswer = userAnswerElement.value;
         
-        function clearAnswer() {
-            document.getElementById('userAnswer').value = ''; // Clear the input field
+            if (userAnswer === '' || userAnswer === '-') {
+                // Toggle between empty and '-'
+                userAnswerElement.value = userAnswer === '' ? '-' : '';
+            } else {
+                // If userAnswer contains a number, toggle its sign
+                var numericValue = parseFloat(userAnswer);
+                if (!isNaN(numericValue)) {
+                    userAnswerElement.value = -numericValue;
+                }
+            }
         }
+        
+        
 
         function keyboardShowCheck() {
             var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
