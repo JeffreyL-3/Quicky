@@ -1,5 +1,11 @@
 # Quicky
-Get ready for some quick math! Quicky is a free and simple webapp some fast math.
+Get ready for some quick math! Quicky is a free and simple webapp to get some math practice done.
+
+## Features
+- Simple addition and subtraction!
+- Problem normalization to push large numbers down to 2 digits or less
+- Cross-platform support and responsive design, with custom keyboard for mobile for ease of use
+- Fully static webapp
 
 ## Setup
 - Access the webapp here: https://jeffreyl-3.github.io/Quicky/
