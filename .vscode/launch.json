@@ -2,20 +2,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: HTTP Server",
-            "type": "python",
-            "request": "launch",
-            "module": "http.server",
-            "args": ["8000"],
-            "cwd": "${workspaceFolder}"
-        },
-        {
-            "name": "Open Chrome",
+            "name": "Mac-Launch-Chrome",
             "type": "chrome",
             "request": "launch",
             "url": "http://localhost:8000",
             "webRoot": "${workspaceFolder}",
-            "preLaunchTask": "start-python-server"
+            "preLaunchTask": "mac-python-server"
+        },
+        {
+            "name": "Win-Launch-Chrome",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:8000",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "win-python-server"
         }
     ]
 }

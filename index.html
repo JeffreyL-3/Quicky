@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Quicky</title>
     <link href="https://fonts.cdnfonts.com/css/aquire" rel="stylesheet">
@@ -50,16 +51,18 @@
             top: 40%;
             flex-direction: column;
         }
-        
+
         #problem {
-            margin-right: 20px; /* You can reduce this value to bring them closer */
+            margin-right: 20px;
+            /* You can reduce this value to bring them closer */
             /* If the #problem div has padding, you can reduce it as well */
-            padding-right: 0; /* Adjust as needed */
+            padding-right: 0;
+            /* Adjust as needed */
             font-size: 10vh;
         }
-        
-        
-    
+
+
+
         body {
             background-color: rgb(66, 137, 160);
             display: flex;
@@ -69,8 +72,10 @@
             height: 100vh;
             font-family: 'motiva-sans', sans-serif;
             position: relative;
-            white-space: nowrap; /* Prevents text from wrapping */
-            overflow: hidden; /* Hides text that overflows */
+            white-space: nowrap;
+            /* Prevents text from wrapping */
+            overflow: hidden;
+            /* Hides text that overflows */
         }
 
         #counter {
@@ -88,16 +93,21 @@
             position: absolute;
             top: 5%;
             left: 50%;
-            transform: translate(-50%, 0); /* Correct translation */
+            transform: translate(-50%, 0);
+            /* Correct translation */
             font-family: 'Aquire', sans-serif;
-            font-size: 12vh; /* Adjust the font size to fit on different screens */
+            font-size: 12vh;
+            /* Adjust the font size to fit on different screens */
             color: white;
         }
-        
-        html, body {
+
+        html,
+        body {
             font-weight: bold;
-            overflow: hidden; /* Prevents scrolling */
-            height: 100%; /* Sets a fixed height */
+            overflow: hidden;
+            /* Prevents scrolling */
+            height: 100%;
+            /* Sets a fixed height */
         }
 
         #timer {
@@ -113,19 +123,26 @@
             background-color: #262626;
             padding: 10px;
             border-radius: 20px;
-            box-sizing: border-box; /* This line ensures padding is included in width */
-            width: 120vh; /* This line ensures the popup takes the full viewport width */
-            position: fixed; /* This line, combined with the following two, ensures */
-            left: -10; /* the popup is not constrained by parent element's width and */
-            right: 10; /* positions it relative to the viewport */
-            top: 40%; /* Start at 50% from the top */
+            box-sizing: border-box;
+            /* This line ensures padding is included in width */
+            width: 120vh;
+            /* This line ensures the popup takes the full viewport width */
+            position: fixed;
+            /* This line, combined with the following two, ensures */
+            left: -10;
+            /* the popup is not constrained by parent element's width and */
+            right: 10;
+            /* positions it relative to the viewport */
+            top: 40%;
+            /* Start at 50% from the top */
         }
 
         .popup-content {
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: white; /* Set the text color to white */
+            color: white;
+            /* Set the text color to white */
             display: flex;
             font-size: 10vh;
             flex-direction: column;
@@ -133,38 +150,45 @@
             font-weight: bold;
         }
 
-        .score-text{
+        .score-text {
             color: #7eb5cc;
         }
 
-        #score .score-number{
+        #score .score-number {
             color: #7eccaa;
         }
-        
+
         /* Add keyframes for the popup scaling animation */
         @keyframes scalePopup {
             0% {
                 transform: scale(0.1);
                 opacity: 0;
             }
+
             80% {
                 transform: scale(1.05);
             }
+
             100% {
                 transform: scale(1);
                 opacity: 1;
             }
         }
-        
+
         @keyframes fadeInText {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
-        
+
         #resultsPopup.popup {
             animation: scalePopup 1s ease forwards;
         }
-        
+
 
         button {
             background: #333;
@@ -173,7 +197,8 @@
             padding: 10px 30px;
             margin: 10px;
             border-radius: 5px;
-            cursor: pointer; /* Add cursor style */
+            cursor: pointer;
+            /* Add cursor style */
             display: inline-block;
             font-family: 'motiva-sans', sans-serif;
             font-weight: bold;
@@ -181,42 +206,56 @@
         }
 
         button:hover {
-            background-color: #444; /* Slightly darker background on hover */
-            box-shadow: 0 0 5px rgba(255, 255, 255, 0.1); /* More subtle glow */
-            transition: background-color 0.1s, box-shadow 0.1s; /* Smooth transition for the hover effect */
+            background-color: #444;
+            /* Slightly darker background on hover */
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+            /* More subtle glow */
+            transition: background-color 0.1s, box-shadow 0.1s;
+            /* Smooth transition for the hover effect */
         }
 
         #keyboard {
             display: none;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
-            margin-top: 50vh; /* Adjust this value as needed to create space between the problem container and the keyboard */
-            width: 100%; /* This will make it responsive */
-            justify-content: center; /* This will center the keys */
-            padding: 0 20px; /* This gives some space on the sides */
+            margin-top: 50vh;
+            /* Adjust this value as needed to create space between the problem container and the keyboard */
+            width: 100%;
+            /* This will make it responsive */
+            justify-content: center;
+            /* This will center the keys */
+            padding: 0 20px;
+            /* This gives some space on the sides */
             white-space: normal;
         }
-        
-        
+
+
         .key {
-            background-color: #FFF; /* White key background */
-            color: #333; /* Dark text */
+            background-color: #FFF;
+            /* White key background */
+            color: #333;
+            /* Dark text */
             padding: 15px;
             text-align: center;
             font-size: 2em;
             border-radius: 5px;
-            user-select: none; /* Prevents text selection */
-            -webkit-tap-highlight-color: transparent; /* Removes mobile highlight */
-            cursor: pointer; /* Pointer to indicate clickable */
-            box-shadow: 1px 1px 5px rgba(0,0,0,0.2); /* Soft shadow for depth */
-        }
-        
-        .key:active {
-            background-color: #eaeaea; /* Feedback when key is pressed */
+            user-select: none;
+            /* Prevents text selection */
+            -webkit-tap-highlight-color: transparent;
+            /* Removes mobile highlight */
+            cursor: pointer;
+            /* Pointer to indicate clickable */
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+            /* Soft shadow for depth */
         }
 
+        .key:active {
+            background-color: #eaeaea;
+            /* Feedback when key is pressed */
+        }
     </style>
 </head>
+
 <body>
     <canvas id="my-canvas"></canvas>
     <canvas id="my-canvas"></canvas>
@@ -224,7 +263,7 @@
     <div id="counter">0</div>
     <div id="problemContainer">
         <div id="problem"></div>
-        <input type="text" id="userAnswer"/>
+        <input type="text" id="userAnswer" />
     </div>
 
     <!-- Keyboard container -->
@@ -246,7 +285,7 @@
         <div class="key" data-number="0" ontouchstart="enterNumber('0')">0</div>
         <div class="key" data-action="backspace" ontouchstart="backspace()">BACKSPACE</div>
     </div>
-    
+
 
 
     <div id="timer">60</div>
@@ -268,24 +307,24 @@
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
-      
+
         // Your web app's Firebase configuration
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
-          apiKey: "AIzaSyDFXcTdZgZcX26eMPeKJaZ9pBQGKe1-4Jo",
-          authDomain: "quicky-e1057.firebaseapp.com",
-          projectId: "quicky-e1057",
-          storageBucket: "quicky-e1057.appspot.com",
-          messagingSenderId: "979621688706",
-          appId: "1:979621688706:web:a6bad2420285fda1d64b9b",
-          measurementId: "G-FDDBWZDNLD"
+            apiKey: "AIzaSyDFXcTdZgZcX26eMPeKJaZ9pBQGKe1-4Jo",
+            authDomain: "quicky-e1057.firebaseapp.com",
+            projectId: "quicky-e1057",
+            storageBucket: "quicky-e1057.appspot.com",
+            messagingSenderId: "979621688706",
+            appId: "1:979621688706:web:a6bad2420285fda1d64b9b",
+            measurementId: "G-FDDBWZDNLD"
         };
-      
+
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
     </script>
-    
+
     <script>
         var confettiSettings = { target: 'my-canvas', start_from_edge: 'true', max: '100', clock: '33' };
         var confetti = new ConfettiGenerator(confettiSettings);
@@ -300,15 +339,15 @@
 
             let rampDown = 0.5;
             const absSize = Math.abs(lastAnswer);
-            if(absSize >= 100){
-                rampDown = 0.5 - (absSize/400)
+            if (absSize >= 100) {
+                rampDown = 0.5 - (absSize / 400)
 
-                if(num2 < 50){
-                    num2 += absSize/10
+                if (num2 < 50) {
+                    num2 += absSize / 10
                 }
             }
             Math.round(num2);
-        
+
             // Adjust the probability of choosing addition or subtraction based on lastAnswer
             if (lastAnswer < -100) {
                 // Increase probability of addition
@@ -320,9 +359,9 @@
                 // If lastAnswer is between -100 and 100, choose randomly
                 operation = Math.random() > 0.5 ? '+' : '-';
             }
-        
+
             let answer;
-        
+
             if (operation === '+') {
                 answer = num1 + num2;
             } else {
@@ -331,12 +370,12 @@
 
             return { question: `${num1} ${operation} ${num2}`, answer: answer };
         }
-        
-        
+
+
         function checkAnswer() {
             const userAnswer = parseInt(document.getElementById('userAnswer').value);
             const problem = document.currentProblem;
-        
+
             if (userAnswer === problem.answer) {
                 lastAnswer = problem.answer; // Update the last answer
                 problemsSolved++; // Increment the problems solved counter
@@ -344,12 +383,12 @@
                 setTimeout(loadNewProblem, 150); // Delay
             }
         }
-        
-        
+
+
         function updateCounter() {
             document.getElementById('counter').textContent = `${problemsSolved}`;
         }
-        
+
         function loadNewProblem() {
             const problem = generateProblem();
             document.currentProblem = problem;
@@ -357,51 +396,51 @@
             document.getElementById('userAnswer').value = '';
             updateCounter(); // Ensure the counter is updated when the new problem is loaded
         }
-        
+
         // Set up the event listener for the input field 
-        window.onload = function() {
+        window.onload = function () {
             setAllFontSize();
             keyboardShowCheck();
             loadNewProblem();
             document.getElementById('userAnswer').focus(); // Focus the invisible input box for user input
             document.getElementById('userAnswer').addEventListener('input', checkAnswer);
             startTimer(); // Start the timer when the window loads
-        };             
-        
+        };
+
         let timeLeft = 60000; // 1 minute = 60,000 hundredths of a second
-        
+
         let timerWorker;
 
         function startTimer() {
-          if (window.Worker) {
-            timerWorker = new Worker('timerWorker.js');
-            timerWorker.postMessage('start'); // Start the timer in the worker
-        
-            timerWorker.onmessage = function(e) {
-              let timeLeft = e.data;
-        
-              // Convert milliseconds to seconds (1 second = 1000 milliseconds)
-              let seconds = Math.floor(timeLeft / 1000);
-        
-              // Calculate hundredths of a second
-              // (e.g., 1250 milliseconds is 1 second and 250 milliseconds or 25 hundredths)
-              let hundredths = Math.floor((timeLeft % 1000) / 10);
-              hundredths = hundredths < 10 ? '0' + hundredths : hundredths;
-        
-              document.getElementById('timer').textContent = seconds + '.' + hundredths;
-        
-              if (timeLeft <= 0) {
-                timerWorker.terminate(); // Stop the worker when the timer ends
-                showResultsPopup();
-              }
-            };
-          }
+            if (window.Worker) {
+                timerWorker = new Worker('timerWorker.js');
+                timerWorker.postMessage('start'); // Start the timer in the worker
+
+                timerWorker.onmessage = function (e) {
+                    let timeLeft = e.data;
+
+                    // Convert milliseconds to seconds (1 second = 1000 milliseconds)
+                    let seconds = Math.floor(timeLeft / 1000);
+
+                    // Calculate hundredths of a second
+                    // (e.g., 1250 milliseconds is 1 second and 250 milliseconds or 25 hundredths)
+                    let hundredths = Math.floor((timeLeft % 1000) / 10);
+                    hundredths = hundredths < 10 ? '0' + hundredths : hundredths;
+
+                    document.getElementById('timer').textContent = seconds + '.' + hundredths;
+
+                    if (timeLeft <= 0) {
+                        timerWorker.terminate(); // Stop the worker when the timer ends
+                        showResultsPopup();
+                    }
+                };
+            }
         }
-        
+
 
         function resetAll() {
             problemsSolved = 0;
-            lastAnswer=0;
+            lastAnswer = 0;
             timeLeft = 6000;
             loadNewProblem();
         }
@@ -420,7 +459,7 @@
             updateScore();
             startConfetti();
         }
-          
+
         function playAgain() {
             document.getElementById('resultsPopup').style.display = 'none';
             document.getElementById('problemContainer').style.display = 'flex'; // Show the problem container again
@@ -432,13 +471,13 @@
             document.getElementById('userAnswer').focus(); // Set focus to the input box
             stopConfetti();
         }
-        
-        function startConfetti(){
+
+        function startConfetti() {
             confetti = new ConfettiGenerator(confettiSettings);
             confetti.render();
         }
 
-        function stopConfetti(){
+        function stopConfetti() {
             confetti.clear();
         }
 
@@ -446,7 +485,7 @@
             document.getElementById('userAnswer').value += number;
             checkAnswer(); // Call your checkAnswer function
         }
-        
+
         function backspace() {
             var userAnswer = document.getElementById('userAnswer');
             userAnswer.value = userAnswer.value.slice(0, -1); // Remove last character
@@ -455,7 +494,7 @@
         function negative() {
             var userAnswerElement = document.getElementById('userAnswer');
             var userAnswer = userAnswerElement.value;
-        
+
             if (userAnswer === '' || userAnswer === '-') {
                 // Toggle between empty and '-'
                 userAnswerElement.value = userAnswer === '' ? '-' : '';
@@ -467,75 +506,76 @@
                 }
             }
         }
-        
-        
+
+
 
         function keyboardShowCheck() {
             var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             if (!isMobile) {
                 document.getElementById('keyboard').style.display = 'none';
             }
-            else{
+            else {
                 document.getElementById('keyboard').style.display = 'grid';
             }
         }
-        
+
         function getSmallerVWVH(percent) {
             // Get viewport width and height
             let vw = window.innerWidth;
             let vh = window.innerHeight;
-          
+
             // Calculate 10% of viewport width and height
-            let usedVW = vw * percent/100;
-            let usedVH = vh * percent/100;
-          
+            let usedVW = vw * percent / 100;
+            let usedVH = vh * percent / 100;
+
             // Return the smaller of the two values
             return Math.round(Math.min(usedVW, usedVH));
         }
-        
+
         // Modular function to set font size
         function setFontSize(selector) {
             let elements;
-        
+
             // Determine the type of the selector and get the elements
             if (selector.startsWith('#')) {
-            // ID selector
-            elements = [document.getElementById(selector.substring(1))];
+                // ID selector
+                elements = [document.getElementById(selector.substring(1))];
             } else if (selector.startsWith('.')) {
-            // Class selector
-            elements = document.getElementsByClassName(selector.substring(1));
+                // Class selector
+                elements = document.getElementsByClassName(selector.substring(1));
             } else {
-            // Tag selector
-            elements = document.getElementsByTagName(selector);
+                // Tag selector
+                elements = document.getElementsByTagName(selector);
             }
-        
+
             // Set font size for the selected elements
             for (let element of elements) {
-            if (element) {
-                element.style.fontSize = getSmallerVWVH() + 'px';
-            }
+                if (element) {
+                    element.style.fontSize = getSmallerVWVH() + 'px';
+                }
             }
         }
-        
+
         // Example usage
         document.addEventListener('DOMContentLoaded', () => {
             setAllFontSize
         });
-        
+
         // Optionally, adjust font size on window resize
         window.addEventListener('resize', () => {
             setAllFontSize
         });
 
-        function setAllFontSize(){
+        function setAllFontSize() {
             setFontSize('#userAnswer');
             setFontSize('#problem');
             setFontSize('h1');
             setFontSize('.popup-content');
         }
-          
-        
-        
+
+
+
     </script>
 </body>
+
 </html>
