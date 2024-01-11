@@ -4,7 +4,7 @@ Get ready for some quick math! Quicky is a free and simple webapp to get some ma
 ## Features
 - Simple addition and subtraction!
 - Problem normalization to push large numbers down to 2 digits or less
-- Cross-platform support and responsive design, with custom keyboard for mobile for ease of use
+- Cross-platform support and responsive design, with custom keyboard on mobile for ease of use
 - Fully static webapp
 
 ## Setup
