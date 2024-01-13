@@ -7,6 +7,7 @@
     <link href="https://fonts.cdnfonts.com/css/motiva-sans" rel="stylesheet">
     <style>
         #userAnswer {
+            font-family: 'motiva-sans', sans-serif;
             background-color: transparent;
             border: none;
             color: #7eccaa;
@@ -28,10 +29,17 @@
         }
 
         #problem {
+            font-weight: bold;
             color: white;
             font-size: 10vh;
             text-align: center;
             margin-bottom: 10px;
+            margin-right: 20px;
+            /* You can reduce this value to bring them closer */
+            /* If the #problem div has padding, you can reduce it as well */
+            padding-right: 0;
+            /* Adjust as needed */
+            font-size: 10vh;
         }
 
         .num1-color {
@@ -51,17 +59,6 @@
             top: 40%;
             flex-direction: column;
         }
-
-        #problem {
-            margin-right: 20px;
-            /* You can reduce this value to bring them closer */
-            /* If the #problem div has padding, you can reduce it as well */
-            padding-right: 0;
-            /* Adjust as needed */
-            font-size: 10vh;
-        }
-
-
 
         body {
             background-color: rgb(66, 137, 160);
@@ -96,13 +93,12 @@
             transform: translate(-50%, 0);
             /* Correct translation */
             font-family: 'Aquire', sans-serif;
-            font-size: 12vh;
+            font-size: 15vw;
             /* Adjust the font size to fit on different screens */
             color: white;
         }
 
-        html,
-        body {
+        html, body {
             font-weight: bold;
             overflow: hidden;
             /* Prevents scrolling */
@@ -408,6 +404,11 @@
             startTimer(); // Start the timer when the window loads
         };
 
+        window.onresize = function () {
+            setAllFontSize();
+
+        };
+
         let timeLeft = 60000; // 1 minute = 60,000 hundredths of a second
 
         let timerWorker;
@@ -534,7 +535,7 @@
         }
 
         // Modular function to set font size
-        function setFontSize(selector) {
+        function setFontSize(selector, percent) {
             let elements;
 
             // Determine the type of the selector and get the elements
@@ -552,26 +553,16 @@
             // Set font size for the selected elements
             for (let element of elements) {
                 if (element) {
-                    element.style.fontSize = getSmallerVWVH() + 'px';
+                    element.style.fontSize = getSmallerVWVH(percent) + 'px';
                 }
             }
         }
 
-        // Example usage
-        document.addEventListener('DOMContentLoaded', () => {
-            setAllFontSize
-        });
-
-        // Optionally, adjust font size on window resize
-        window.addEventListener('resize', () => {
-            setAllFontSize
-        });
-
         function setAllFontSize() {
-            setFontSize('#userAnswer');
-            setFontSize('#problem');
-            setFontSize('h1');
-            setFontSize('.popup-content');
+            setFontSize('#userAnswer', 10);
+            setFontSize('#problem', 10);
+            setFontSize('h1', 20);
+            setFontSize('.popup-content', 10);
         }
 
 
