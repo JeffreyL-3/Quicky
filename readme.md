@@ -1,5 +1,5 @@
 # Quicky
-Get ready for some quick math! Quicky is a free and simple webapp to get some math practice done.
+Get ready for some quick math! Quicky is a simple (and free!) webapp to get some math practice done.
 
 ## Features
 - Simple addition and subtraction!
