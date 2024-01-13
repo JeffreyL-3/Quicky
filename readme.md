@@ -5,7 +5,7 @@ Get ready for some quick math! Quicky is a simple (and free!) webapp to get some
 - Simple addition and subtraction!
 - Problem normalization to push large numbers down to 2 digits or less
 - Cross-platform support and responsive design, with custom keyboard on mobile for ease of use
-- Fully static webapp
+- Fully static webapp, with bundled vscode safelaunch (for both mac and windows)
 
 ## Setup
 - Access the webapp here: https://jeffreyl-3.github.io/Quicky/
