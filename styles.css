@@ -191,6 +191,7 @@ button {
     font-family: 'motiva-sans', sans-serif;
     font-weight: bold;
     font-size: 3vh;
+    touch-action: manipulation;
 }
 
 button:hover {
@@ -206,7 +207,7 @@ button:hover {
     display: none;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    margin-top: 50vh;
+    margin-top: 70vh;
     /* Adjust this value as needed to create space between the problem container and the keyboard */
     width: 100%;
     /* This will make it responsive */
