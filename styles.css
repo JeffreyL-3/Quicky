@@ -92,10 +92,13 @@ h1 {
 
 html, body {
     font-weight: bold;
+    margin: 0;
     overflow: hidden;
     /* Prevents scrolling */
     height: 100%;
     /* Sets a fixed height */
+    touch-action: manipulation;
+
 }
 
 #timer {
@@ -191,7 +194,6 @@ button {
     font-family: 'motiva-sans', sans-serif;
     font-weight: bold;
     font-size: 3vh;
-    touch-action: manipulation;
 }
 
 button:hover {
