@@ -85,7 +85,7 @@ window.onresize = function () {
 
 };
 
-const startTime = 1000; // 1 minute = 60,000 hundredths of a second
+const startTime = 60000; // 1 minute = 60,000 hundredths of a second
 let timeLeft = startTime;
 const start = 1;
 
