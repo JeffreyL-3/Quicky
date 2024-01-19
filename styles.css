@@ -97,7 +97,7 @@ html, body {
     /* Prevents scrolling */
     height: 100%;
     /* Sets a fixed height */
-    touch-action: manipulation;
+    touch-action: none;
 
 }
 
