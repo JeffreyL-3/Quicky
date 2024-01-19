@@ -1,4 +1,4 @@
-var confettiSettings = { target: 'my-canvas', start_from_edge: 'true', max: '100', clock: '33' };
+var confettiSettings = { target: 'my-canvas', start_from_edge: 'true', max: '100', clock: '100' };
 var confetti = new ConfettiGenerator(confettiSettings);
 
 let lastAnswer = 0; // Variable to store the last answer
@@ -85,14 +85,17 @@ window.onresize = function () {
 
 };
 
-let timeLeft = 60000; // 1 minute = 60,000 hundredths of a second
+const startTime = 1000; // 1 minute = 60,000 hundredths of a second
+let timeLeft = startTime;
+const start = 1;
 
 let timerWorker;
 
 function startTimer() {
     if (window.Worker) {
-        timerWorker = new Worker('timerWorker.js');
-        timerWorker.postMessage('start'); // Start the timer in the worker
+        timerWorker = new Worker('timerWorker2.js');
+
+        timerWorker.postMessage([1, startTime]); // 1 = start timerWorker
 
         timerWorker.onmessage = function (e) {
             let timeLeft = e.data;
