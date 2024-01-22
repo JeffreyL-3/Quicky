@@ -14,6 +14,4 @@ Ready? Access the github page here: https://jeffreyl-3.github.io/Quicky/!
 - Choose either the Win or Mac launch config, then hit run.
 
 ## TODO
-- Disable doubletap zoom
-- Disable scroll
-- Disable non-number input
+- Add topbar
