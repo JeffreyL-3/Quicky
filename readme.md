@@ -14,4 +14,4 @@ Ready? Access the github page here: https://jeffreyl-3.github.io/Quicky/!
 - Choose either the Win or Mac launch config, then hit run.
 
 ## TODO
-- Add topbar
+- Add leaderboard
