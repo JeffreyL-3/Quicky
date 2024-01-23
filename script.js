@@ -72,6 +72,7 @@ function loadNewProblem() {
 
 // Set up the event listener for the input field 
 window.onload = function () {
+    screen.orientation.lock("portrait");
     setAllFontSize();
     keyboardShowCheck();
     loadNewProblem();
