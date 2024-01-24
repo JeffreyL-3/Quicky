@@ -72,7 +72,6 @@ function loadNewProblem() {
 
 // Set up the event listener for the input field 
 window.onload = function () {
-    screen.orientation.lock("portrait");
     setAllFontSize();
     keyboardShowCheck();
     loadNewProblem();
@@ -164,8 +163,10 @@ function stopConfetti() {
 }
 
 function enterNumber(number) {
-    document.getElementById('userAnswer').value += number;
-    checkAnswer(); // Call your checkAnswer function
+    if (document.getElementById('userAnswer').value.length<5){
+        document.getElementById('userAnswer').value += number;
+        checkAnswer();
+    }
 }
 
 function backspace() {
@@ -193,7 +194,9 @@ function negative() {
 
 function keyboardShowCheck() {
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    if (!isMobile) {
+    var isPortrait = window.innerHeight > window.innerWidth;
+
+    if (!isMobile || ! isPortrait) {
         document.getElementById('keyboard').style.display = 'none';
     }
     else {

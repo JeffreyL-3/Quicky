@@ -217,7 +217,7 @@ button:hover {
     /* This gives some space on the sides */
     white-space: normal;
     position: fixed;
-    bottom: 10vh; /* Align the bottom edge */
+    bottom: 5vh; /* Align the bottom edge */
 
 }
 
