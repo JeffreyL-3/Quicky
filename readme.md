@@ -11,7 +11,8 @@ Ready? Access the github page here: https://jeffreyl-3.github.io/Quicky/!
 ## Setup
 - Access the webapp here: https://jeffreyl-3.github.io/Quicky/
 - Or clone the app and run it yourself! An optional .vscode folder has been included for ease of setup.
-- Choose either the Win or Mac launch config, then hit run.
+    -  Choose either the Win or Mac launch config, then hit run.
+    -  Note: the default setup runs on a local python server. Python will need to be installed for it to load correctly.
 
 ## TODO
 - Add leaderboard
