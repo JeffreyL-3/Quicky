@@ -1,5 +1,4 @@
-var confettiSettings = { target: 'my-canvas', start_from_edge: 'true', max: '100', clock: '100' };
-var confetti = new ConfettiGenerator(confettiSettings);
+//CORE MATH
 
 let lastAnswer = 0; // Variable to store the last answer
 let problemsSolved = 0; // Variable to keep track of the number of problems solved
@@ -57,33 +56,13 @@ function checkAnswer() {
     }
 }
 
+//
 
-function updateCounter() {
-    document.getElementById('counter').textContent = `${problemsSolved}`;
-}
 
-function loadNewProblem() {
-    const problem = generateProblem();
-    document.currentProblem = problem;
-    document.getElementById('problem').innerHTML = `<span class="num1-color">${problem.question.split(' ')[0]}</span> ${problem.question.substring(problem.question.indexOf(' '))} =`;
-    document.getElementById('userAnswer').value = '';
-    updateCounter(); // Ensure the counter is updated when the new problem is loaded
-}
 
-// Set up the event listener for the input field 
-window.onload = function () {
-    setAllFontSize();
-    keyboardShowCheck();
-    loadNewProblem();
-    document.getElementById('userAnswer').focus(); // Focus the invisible input box for user input
-    document.getElementById('userAnswer').addEventListener('input', checkAnswer);
-    startTimer(); // Start the timer when the window loads
-};
 
-window.onresize = function () {
-    setAllFontSize();
 
-};
+// TIMER
 
 const startTime = 60000; // 1 minute = 60,000 hundredths of a second
 let timeLeft = startTime;
@@ -118,6 +97,12 @@ function startTimer() {
     }
 }
 
+//
+
+
+
+
+//CORE HELPERS
 
 function resetAll() {
     problemsSolved = 0;
@@ -126,10 +111,31 @@ function resetAll() {
     loadNewProblem();
 }
 
+//Score for results popup
 function updateScore() {
     var scoreElement = document.getElementById("score");
     scoreElement.innerHTML = "Score: " + problemsSolved;
 }
+
+//Counter for play screen
+function updateCounter() {
+    document.getElementById('counter').textContent = `${problemsSolved}`;
+}
+
+function loadNewProblem() {
+    const problem = generateProblem();
+    document.currentProblem = problem;
+    document.getElementById('problem').innerHTML = `<span class="num1-color">${problem.question.split(' ')[0]}</span> ${problem.question.substring(problem.question.indexOf(' '))} =`;
+    document.getElementById('userAnswer').value = '';
+    updateCounter(); // Ensure the counter is updated when the new problem is loaded
+}
+
+//
+
+
+
+
+//CORE RUN OPERATIONS
 
 function showResultsPopup() {
     document.getElementById('resultsPopup').style.display = 'block';
@@ -153,6 +159,25 @@ function playAgain() {
     stopConfetti();
 }
 
+window.onload = function () {
+    setAllFontSize();
+    keyboardShowCheck();
+    loadNewProblem();
+    document.getElementById('userAnswer').focus(); // Focus the invisible input box for user input
+    document.getElementById('userAnswer').addEventListener('input', checkAnswer);
+    startTimer(); // Start the timer when the window loads
+};
+
+//
+
+
+
+
+//CONFETTI
+
+var confettiSettings = { target: 'my-canvas', start_from_edge: 'true', max: '100', clock: '100' };
+var confetti = new ConfettiGenerator(confettiSettings);
+
 function startConfetti() {
     confetti = new ConfettiGenerator(confettiSettings);
     confetti.render();
@@ -161,6 +186,14 @@ function startConfetti() {
 function stopConfetti() {
     confetti.clear();
 }
+
+//
+
+
+
+
+
+//KEYBOARD
 
 function enterNumber(number) {
     if (document.getElementById('userAnswer').value.length<5){
@@ -190,8 +223,6 @@ function negative() {
     }
 }
 
-
-
 function keyboardShowCheck() {
     var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     var isPortrait = window.innerHeight > window.innerWidth;
@@ -203,6 +234,14 @@ function keyboardShowCheck() {
         document.getElementById('keyboard').style.display = 'grid';
     }
 }
+
+//
+
+
+
+
+
+//RESPONSIVE FONTS
 
 function getSmallerVWVH(percent) {
     // Get viewport width and height
@@ -247,3 +286,10 @@ function setAllFontSize() {
     setFontSize('h1', 20);
     setFontSize('.popup-content', 10);
 }
+
+window.onresize = function () {
+    setAllFontSize();
+
+};
+
+//
