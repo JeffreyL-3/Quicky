@@ -64,7 +64,7 @@ function checkAnswer() {
 
 // TIMER
 
-const startTime = 60000; // 1 minute = 60,000 hundredths of a second
+const startTime = 6000; // 1 minute = 60,000 hundredths of a second
 let timeLeft = startTime;
 const start = 1;
 
@@ -175,7 +175,9 @@ window.onload = function () {
 
 //CONFETTI
 
-var confettiSettings = { target: 'my-canvas', start_from_edge: 'true', max: '100', clock: '100' };
+//Dynamic speed (bigger height = more space to fall = faster speed)
+var confettiSettings = { target: 'my-canvas', start_from_edge: 'true', max: '100', clock: window.innerHeight/10 };
+
 var confetti = new ConfettiGenerator(confettiSettings);
 
 function startConfetti() {
