@@ -143,15 +143,19 @@ function showResultsPopup() {
     document.getElementById('keyboard').style.display = 'none';
     document.getElementById('counter').style.display = 'none';
     document.getElementById('timer').style.display = 'none';
+    document.getElementById('top-bar').style.display = 'none';
+    document.getElementById('my-canvas').style.display = 'block';
     updateScore();
     startConfetti();
 }
 
 function playAgain() {
+    document.getElementById('my-canvas').style.display = 'none';
     document.getElementById('resultsPopup').style.display = 'none';
     document.getElementById('problemContainer').style.display = 'flex'; // Show the problem container again
     document.getElementById('counter').style.display = 'flex';
     document.getElementById('timer').style.display = 'flex';
+    document.getElementById('top-bar').style.display = 'block';
     keyboardShowCheck();
     resetAll();
     startTimer();
